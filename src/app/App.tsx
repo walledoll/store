@@ -1,18 +1,23 @@
-import { BrowserRouter, Navigate, Route, Routes } from "react-router"
-import Products from "../components/Products"
-import { ROUTES } from "./routes"
-import { ProductDetails } from "@components/ProductDetails"
+import Products from '@components/Products';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router';
+
+const queryClient = new QueryClient();
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Navigate to="/products" />} />
-        <Route path={ROUTES.HOME} element={<Products />} />
-        <Route path={ROUTES.DETAILS} element={<ProductDetails />} />
-      </Routes>
-    </BrowserRouter>
-)
+    <QueryClientProvider client={queryClient}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Navigate to="/products" replace />} />
+          <Route path="/products" element={<Products />}>
+            <Route path=":id" element={null} />
+          </Route>
+          
+        </Routes>
+      </BrowserRouter>
+    </QueryClientProvider>
+  );
 }
 
-export default App
+export default App;
