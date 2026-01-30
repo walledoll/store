@@ -3,7 +3,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import CardActionArea from '@mui/material/CardActionArea';
-import { useNavigate } from 'react-router';
+import { Link } from 'react-router';
 
 export interface ProductProps {
   id: number;
@@ -15,13 +15,8 @@ export interface ProductProps {
 }
 
 export const Product = (props: ProductProps) => {
-  const navigate = useNavigate();
-  const handleClick = () => {
-    navigate(`/products/${props.id}`);
-  }
   return (
     <Card 
-      onClick={handleClick}
       sx={{ 
         maxWidth: 345, 
         height: '100%',
@@ -30,7 +25,11 @@ export const Product = (props: ProductProps) => {
         boxShadow: '5px 5px 10px rgba(0,0,0,0.2)' 
       }}
     >
-      <CardActionArea sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', alignItems: 'stretch' }}>
+      <CardActionArea 
+        component={Link} 
+        to={`/products/${props.id}`}
+        sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', alignItems: 'stretch' }}
+      >
         <CardMedia
           component="img"
           height="300"
@@ -47,7 +46,7 @@ export const Product = (props: ProductProps) => {
               sx={{ 
                 color: 'text.secondary',
                 flexGrow: 1,
-                overflow: 'hidden',
+                overflow: 'hidden'
               }}
             >
                 {props.description}
