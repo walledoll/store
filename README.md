@@ -28,3 +28,7 @@ A simple React application for browsing and viewing product details, built with 
 ## API
 
 This project uses [DummyJSON Products API](https://dummyjson.com/products) to fetch product data.
+
+## Deploy
+
+Live on https://store-pe3o.onrender.com
